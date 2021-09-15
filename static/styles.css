@@ -1,0 +1,11 @@
+main
+{
+    overflow-x: auto;
+    text-align: center;
+}
+main .form-control
+{
+    display: inline-block;
+
+    width: auto;
+}
