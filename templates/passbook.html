@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    通帳
+{% endblock %}
+
+{% block main %}
+
+    
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>日付</th>
+                <th>やったこと</th>
+                <th>時間</th>
+                <th>金額</th>
+                <th>合計金額</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tfood>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{gross}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tfood>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                <td>{{row["date"]}}</td>
+                <td>{{row["task"]}}</td>
+                <td>{{row["time"]}}</td>
+                <td>{{row["unit"]}}</td>
+                <td>{{row["sum"]}}</td>
+                <td><a href="/edit/{{row["id"]}}" class="btn btn-outline-success">編集</a></td>
+                <td><a href="/delete/{{row["id"]}}" class="btn btn-outline-secondary">削除</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+   
+    
+{% endblock %}
