@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    編集
+{% endblock %}
+
+{% block main %}
+
+    <form class="row row-cols-lg-auto g-3 align-items-center" method="post">
+    <div class="col-sm-5">
+    <label class="form-label">日付</label>
+    <input type="date" class="form-control" name="date" value={{row["date"]}} required>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">やったこと</label>
+    <input type="text" class="form-control" name="task" value="{{row["task"]}}">
+  </div>
+  <div class="sm-3">
+    <label class="form-label">時間</label>
+    <input type="time" class="form-control" name="time" value="{{row["time"]}}" required>
+  </div>
+   <div class="col-xs-2">
+    <label class="form-label">金額</label>
+    <input type="number" class="form-control" name="money" value={{row["unit"]}} required>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-outline-info">保存</button>
+  </div>
+  
+  
+</form>
+{% endblock %}
