@@ -1,0 +1,239 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+<form class="row row-cols-lg-auto g-3 align-items-center" method="post">
+    <div class="col-sm-5">
+    <label class="form-label">日付</label>
+    <input type="date" value=""class="form-control" name="date" required>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">やったこと</label>
+    <input type="text" class="form-control" autocomplete="off" name="task">
+  </div>
+  <div class="sm-3">
+    <label class="form-label">時間</label>
+    <input type="time" class="form-control" name="time" required>
+  </div>
+   <div class="col-xs-2">
+    <label class="form-label">金額</label>
+    <input type="number" class="form-control" name="money" required>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-outline-info">登録</button>
+  </div>
+</form>
+
+<h1>{{message}}</h1>
+<p></p>
+<p></p>
+<h2>総資産:{{gross}}円</h2>
+<div>
+<p></p>
+<p></p>
+<h4>日</h4>
+<canvas id="myChart1" width="3" height="1.8"></canvas>
+<script>
+var ctx = document.getElementById("myChart1").getContext('2d');
+var myChart1 = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [{% for week in day_weeks %}
+                "{{week}}",
+                {% endfor %}],
+        datasets: [{
+            label: '金額',
+            data: [{% for unit in day_units %}
+                    {{unit}},
+                    {% endfor %}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+</div>
+
+<div>
+<p></p>
+<h4>週</h4>
+<canvas id="myChart2" width="3" height="1.8"></canvas>
+<script>
+var ctx1 = document.getElementById("myChart2").getContext('2d');
+var myChart2 = new Chart(ctx1, {
+    type: 'bar',
+    data: {
+        labels: [{% for weeks_date in weeks_dates %}
+                "{{weeks_date}}",
+                {% endfor %}],
+        datasets: [{
+            label: '金額',
+            data: [{% for unit in week_units %}
+                    {{unit}},
+                    {% endfor %}],
+            backgroundColor: [
+                'rgba(64, 217, 255, 0.2)',
+                'rgba(64, 217, 255, 0.2)',
+                'rgba(64, 217, 255, 0.2)',
+                'rgba(64, 217, 255, 0.2)',
+                'rgba(64, 217, 255, 0.2)',
+                'rgba(64, 217, 255, 0.2)',
+                'rgba(64, 217, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgba(64,217,255,1)',
+                'rgba(64,217,255,1)',
+                'rgba(64,217,255,1)',
+                'rgba(64,217,255,1)',
+                'rgba(64,217,255,1)',
+                'rgba(64,217,255,1)',
+                'rgba(64,217,255,1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+</div>
+
+<div>
+<p></p>
+<h4>月</h4>
+<canvas id="myChart3" width="3" height="1.8"></canvas>
+<script>
+var ctx1 = document.getElementById("myChart3").getContext('2d');
+var myChart3 = new Chart(ctx1, {
+    type: 'bar',
+    data: {
+        labels: [{% for month in months %}
+                "{{month}}",
+                {% endfor %}],
+        datasets: [{
+            label: '金額',
+            data: [{% for unit in month_units %}
+                    {{unit}},
+                    {% endfor %}],
+            backgroundColor: [
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgba(153, 102, 255, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+</div>
+
+<div>
+<p></p>
+<h4>年</h4>
+<canvas id="myChart4" width="3" height="1.8"></canvas>
+<script>
+var ctx1 = document.getElementById("myChart4").getContext('2d');
+var myChart4 = new Chart(ctx1, {
+    type: 'bar',
+    data: {
+        labels: [{% for year in years %}
+                "{{year}}",
+                {% endfor %}],
+        datasets: [{
+            label: '金額',
+            data: [{% for unit in year_units %}
+                    {{unit}},
+                    {% endfor %}],
+            backgroundColor: [
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)'
+            ],
+            borderColor: [
+                 'rgba(255, 206, 86, 1)',
+                 'rgba(255, 206, 86, 1)',
+                 'rgba(255, 206, 86, 1)',
+                 'rgba(255, 206, 86, 1)',
+                 'rgba(255, 206, 86, 1)',
+                 'rgba(255, 206, 86, 1)',
+                 'rgba(255, 206, 86, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+</div>
+{% endblock %}
